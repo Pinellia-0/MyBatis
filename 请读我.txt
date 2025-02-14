@@ -1,0 +1,7 @@
+MyBatis  ---文档文件夹
+	Resources  ---笔记资源存储文件夹
+	笔记修改日志
+		Resources1  ---修改日志资源存储文件夹
+		2025_02_14.md
+		.......
+	MyBatis笔记.md

@@ -263,9 +263,9 @@ public class UserMapperTest {
     }
 }
 ```
-- SqlSession：代表Java程序和数据库之间的会话。(HttpSession是Java程序和浏览器之间的会话)
+- SqlSession：代表Java程序和数据库之间的会话。(例：HttpSession是Java程序和浏览器之间的会话)
 - SqlSessionFactory：是“生产”SqlSession的“工厂”。
-- 工厂模式：
+- 工厂模式：如果创建某一个对象使用的过程基本固定，那么我们就可以把创建的这个对象的相关代码封装到一个"工厂类"中，以后便使用这个工厂类”生产”需要的对象。
 - 此时需要手动提交事务，如果要自动提交事务，则在获取sqlSession对象时，使用`SqlSession sqlSession = sqlSessionFactory.openSession(true);`，传入一个Boolean类型的参数，值为true，这样就可以自动提交
 ## 7、加入log4j日志功能
 1. 加入依赖
@@ -277,6 +277,7 @@ public class UserMapperTest {
 	<version>1.2.17</version>
 	</dependency>
 	```
+	
 2. 加入log4j的配置文件
 	- log4j的配置文件名为log4j.xml，存放的位置是src/main/resources目录下
 	- 日志的级别：FATAL(致命)>ERROR(错误)>WARN(警告)>INFO(信息)>DEBUG(调试) 从左到右打印的内容越来越详细
@@ -302,6 +303,20 @@ public class UserMapperTest {
 	    </root>
 	</log4j:configuration>
 	```
+	
+	**注**：原官方已经对URL地址进行了更换
+	
+	所以只需将配置地址进行相应修改即可（只修改URL也是会报错的，需要修改成下方所示）
+	
+	```xml
+	<?xml version="1.0" encoding="GB2312" ?>
+	<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+	
+	<log4j:configuration debug="true">
+	```
+	
+	
+
 # 三、核心配置文件详解
 >核心配置文件中的标签必须按照固定的顺序(有的标签可以不写，但顺序一定不能乱)：
 properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapperFactory、reflectorFactory、plugins、environments、databaseIdProvider、mappers
