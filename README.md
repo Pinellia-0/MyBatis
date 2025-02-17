@@ -34,9 +34,11 @@
 - 构建工具：maven 3.5.4  
 - MySQL版本：MySQL 5.7  
 - MyBatis版本：MyBatis 3.5.7
+
 ## 2、创建maven工程
-- 打包方式：jar
-- 引入依赖
+#### a> 打包方式：jar
+
+#### b> 引入依赖
 
 ~~~xml
 ```xml
@@ -268,54 +270,56 @@ public class UserMapperTest {
 - 工厂模式：如果创建某一个对象使用的过程基本固定，那么我们就可以把创建的这个对象的相关代码封装到一个"工厂类"中，以后便使用这个工厂类”生产”需要的对象。
 - 此时需要手动提交事务，如果要自动提交事务，则在获取sqlSession对象时，使用`SqlSession sqlSession = sqlSessionFactory.openSession(true);`，传入一个Boolean类型的参数，值为true，这样就可以自动提交
 ## 7、加入log4j日志功能
-1. 加入依赖
-	```xml
-	<!-- log4j日志 -->
-	<dependency>
-	<groupId>log4j</groupId>
-	<artifactId>log4j</artifactId>
-	<version>1.2.17</version>
-	</dependency>
-	```
-	
-2. 加入log4j的配置文件
-	- log4j的配置文件名为log4j.xml，存放的位置是src/main/resources目录下
-	- 日志的级别：FATAL(致命)>ERROR(错误)>WARN(警告)>INFO(信息)>DEBUG(调试) 从左到右打印的内容越来越详细
-	```xml
-	<?xml version="1.0" encoding="UTF-8" ?>
-	<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-	<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-	    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
-	        <param name="Encoding" value="UTF-8" />
-	        <layout class="org.apache.log4j.PatternLayout">
-				<param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss,SSS} %m (%F:%L) \n" />
-	        </layout>
-	    </appender>
-	    <logger name="java.sql">
-	        <level value="debug" />
-	    </logger>
-	    <logger name="org.apache.ibatis">
-	        <level value="info" />
-	    </logger>
-	    <root>
-	        <level value="debug" />
-	        <appender-ref ref="STDOUT" />
-	    </root>
-	</log4j:configuration>
-	```
-	
-	**注**：原官方已经对URL地址进行了更换
-	
-	所以只需将配置地址进行相应修改即可（只修改URL也是会报错的，需要修改成下方所示）
-	
-	```
-	<?xml version="1.0" encoding="GB2312" ?>
-	<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
-	
-	<log4j:configuration debug="true">
-	```
-	
-	
+#### a> 加入依赖
+
+```xml
+<!-- log4j日志 -->
+<dependency>
+<groupId>log4j</groupId>
+<artifactId>log4j</artifactId>
+<version>1.2.17</version>
+</dependency>
+```
+
+#### b> 加入log4j的配置文件
+
+- log4j的配置文件名为log4j.xml，存放的位置是src/main/resources目录下
+- 日志的级别：FATAL(致命)>ERROR(错误)>WARN(警告)>INFO(信息)>DEBUG(调试) 从左到右打印的内容越来越详细
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss,SSS} %m (%F:%L) \n" />
+        </layout>
+    </appender>
+    <logger name="java.sql">
+        <level value="debug" />
+    </logger>
+    <logger name="org.apache.ibatis">
+        <level value="info" />
+    </logger>
+    <root>
+        <level value="debug" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</log4j:configuration>
+```
+
+**注**：原官方已经对URL地址进行了更换
+
+所以只需将配置地址进行相应修改即可（只修改URL也是会报错的，需要修改成下方所示）
+
+```
+<?xml version="1.0" encoding="GB2312" ?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration debug="true">
+```
+
+
 
 # 三、核心配置文件详解
 >核心配置文件中的标签必须按照固定的顺序(有的标签可以不写，但顺序一定不能乱)：
@@ -341,11 +345,11 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
         type：需要设置别名的类型的全类名
         alias：设置此类型的别名，且别名不区分大小写。若不设置此属性，该类型拥有默认的别名，即类名
         -->
-        <!--<typeAlias type="com.atguigu.mybatis.bean.User"></typeAlias>-->
-        <!--<typeAlias type="com.atguigu.mybatis.bean.User" alias="user">
+        <!--<typeAlias type="com.atguigu.mybatis.pojo.User"></typeAlias>-->
+        <!--<typeAlias type="com.atguigu.mybatis.pojo.User" alias="user">
         </typeAlias>-->
         <!--以包为单位，设置改包下所有的类型都拥有默认的别名，即类名且不区分大小写-->
-        <package name="com.atguigu.mybatis.bean"/>
+        <package name="com.atguigu.mybatis.pojo"/>
     </typeAliases>
     <!--
     environments：设置多个连接数据库的环境
@@ -401,9 +405,21 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 </configuration>
 ```
 - ![](Resources/mapper接口和mapper映射文件在同一包下.png)
+
+**注:**新版 MySQL Connector/J（6.0+）对驱动类进行了更新,旧版本会出现报错。
+
+*Loading class 'com.mysql.jdbc.Driver'. This is deprecated. The new driver class is 'com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.*
+
+![](Resources/mysql驱动报错提示.png)
+
+旧的驱动类 `com.mysql.jdbc.Driver` 在 MySQL Connector/J 6.0 开始被标记为废弃，不再推荐使用。新版驱动类为 `com.mysql.cj.jdbc.Driver`，全面支持新版 JDBC 的规范。
+
+详细请看**笔记修改日志/2025_02_17.md**
+
 # 默认的类型别名
 ![](Resources/默认的类型别名1.png)
 ![](Resources/默认的类型别名2.png)
+
 # 四、MyBatis的增删改查
 1. 添加
 	```xml
@@ -450,7 +466,7 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 - MyBatis获取参数值的两种方式：${}和#{}  
 - ${}的本质就是字符串拼接，#{}的本质就是占位符赋值  
 - ${}使用字符串拼接的方式拼接sql，若为字符串类型或日期类型的字段进行赋值时，需要手动加单引号；但是#{}使用占位符赋值的方式拼接sql，此时为字符串类型或日期类型的字段进行赋值时，可以自动添加单引号
-## 单个字面量类型的参数
+## 1、单个字面量类型的参数
 - 若mapper接口中的方法参数为单个的字面量类型，此时可以使用\${}和#{}以任意的名称（最好见名识意）获取参数的值，注意${}需要手动加单引号
 ```xml
 <!--User getUserByUsername(String username);-->
@@ -464,7 +480,7 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 	select * from t_user where username = '${username}'  
 </select>
 ```
-## 多个字面量类型的参数
+## 2、多个字面量类型的参数
 - 若mapper接口中的方法参数为多个时，此时MyBatis会自动将这些参数放在一个map集合中
 
 	1. 以arg0,arg1...为键，以参数为值；
@@ -483,7 +499,7 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 	select * from t_user where username = '${param1}' and password = '${param2}'
 </select>
 ```
-## map集合类型的参数
+## 3、map集合类型的参数
 - 若mapper接口中的方法需要的参数为多个时，此时可以手动创建map集合，将这些数据放在map中只需要通过\${}和#{}访问map集合的键就可以获取相对应的值，注意${}需要手动加单引号
 ```xml
 <!--User checkLoginByMap(Map<String,Object> map);-->
@@ -503,7 +519,7 @@ public void checkLoginByMap() {
 	System.out.println(user);
 }
 ```
-## 实体类类型的参数
+## 4、实体类类型的参数
 - 若mapper接口中的方法参数为实体类对象时此时可以使用\${}和#{}，通过访问实体类对象中的属性名获取属性值，注意${}需要手动加单引号
 ```xml
 <!--int insertUser(User user);-->
@@ -520,7 +536,7 @@ public void insertUser() {
 	mapper.insertUser(user);
 }
 ```
-## 使用@Param标识参数
+## 5、使用@Param标识参数
 - 可以通过@Param注解标识mapper接口中的方法参数，此时，会将这些参数放在map集合中 
 
 	1. 以@Param注解的value属性值为键，以参数为值；
@@ -664,7 +680,7 @@ Map<String, Object> getAllUserToMap();
 -->
 ```
 # 七、特殊SQL的执行
-## 模糊查询
+## 1、模糊查询
 ```java
 /**
  * 根据用户名进行模糊查询
@@ -683,7 +699,7 @@ List<User> getUserByLike(@Param("username") String username);
 </select>
 ```
 - 其中`select * from t_user where username like "%"#{mohu}"%"`是最常用的
-## 批量删除
+## 2、批量删除
 - 只能使用\${}，如果使用#{}，则解析后的sql语句为`delete from t_user where id in ('1,2,3')`，这样是将`1,2,3`看做是一个整体，只有id为`1,2,3`的数据会被删除。正确的语句应该是`delete from t_user where id in (1,2,3)`，或者`delete from t_user where id in ('1','2','3')`
 ```java
 /**
@@ -709,7 +725,7 @@ public void deleteMore() {
 	System.out.println(result);
 }
 ```
-## 动态设置表名
+## 3、动态设置表名
 - 只能使用${}，因为表名不能加单引号
 ```java
 /**
@@ -726,7 +742,7 @@ List<User> getUserByTable(@Param("tableName") String tableName);
 	select * from ${tableName}
 </select>
 ```
-## 添加功能获取自增的主键
+## 4、添加功能获取自增的主键
 - 使用场景
 	- t_clazz(clazz_id,clazz_name)  
 	- t_student(student_id,student_name,clazz_id)  
@@ -762,7 +778,7 @@ public void insertUser() {
 	//输出：user{id=10, username='ton', password='123', age=23, sex='男', email='123@321.com'}，自增主键存放到了user的id属性中
 }
 ```
-# 自定义映射resultMap
+# 八、自定义映射resultMap
 ## resultMap处理字段和属性的映射关系
 - resultMap：设置自定义映射  
 	- 属性：  

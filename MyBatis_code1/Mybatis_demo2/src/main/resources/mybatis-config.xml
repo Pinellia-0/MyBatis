@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--约束-->
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
 
     <properties resource="jdbc.properties"/>
 
     <typeAliases>
-        <!--<typeAlias type="com.atguigu.mybatis.pojo.User"></typeAlias>-->
-        <!--<typeAlias type="com.atguigu.mybatis.pojo.User" alias="user">
-        </typeAlias>-->
-        <!--以包为单位，设置改包下所有的类型都拥有默认的别名，即类名且不区分大小写-->
         <package name="com.atguigu.mybatis.pojo"/>
     </typeAliases>
 
-    <!--连接数据库的环境-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -28,9 +21,8 @@
             </dataSource>
         </environment>
     </environments>
-    <!--引入映射文件-->
+
     <mappers>
-        <!--<mapper resource="mappers/UserMapper.xml"/>-->
-        <package name="com.atguigu.mybatis.mapper"/>
+        <mapper resource="com.atguigu.mybatis.mapper"/>
     </mappers>
 </configuration>

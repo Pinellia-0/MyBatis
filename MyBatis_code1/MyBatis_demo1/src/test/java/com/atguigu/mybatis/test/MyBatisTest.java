@@ -1,6 +1,7 @@
 package com.atguigu.mybatis.test;
 
 import com.atguigu.mybatis.mapper.UserMapper;
+import com.atguigu.mybatis.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MyBatisTest {
 
@@ -37,4 +39,51 @@ public class MyBatisTest {
         sqlSession.commit();
         System.out.println("result" + result);
     }
+
+    @Test
+    public void testUpdate() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.updateUser();
+    }
+
+    @Test
+    public void testCRUD() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //mapper.updateUser();
+        mapper.deleteUser();
+    }
+
+    @Test
+    public void testSelect() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //mapper.updateUser();
+        //mapper.deleteUser();
+        User user = mapper.getUserById();
+        System.out.println(user);
+    }
+
+    @Test
+    public void testSelect1() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //mapper.updateUser();
+        //mapper.deleteUser();
+        //User user = mapper.getUserById();
+        //System.out.println(user);
+        List<User> List = mapper.getAllUser();
+        //List.forEach(System.out::println);
+        List.forEach(user -> System.out.println(user));
+    }
+
 }
