@@ -308,7 +308,7 @@ public class UserMapperTest {
 	
 	所以只需将配置地址进行相应修改即可（只修改URL也是会报错的，需要修改成下方所示）
 	
-	```xml
+	```
 	<?xml version="1.0" encoding="GB2312" ?>
 	<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 	
