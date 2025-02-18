@@ -467,7 +467,8 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 - ${}的本质就是字符串拼接，#{}的本质就是占位符赋值  
 - ${}使用字符串拼接的方式拼接sql，若为字符串类型或日期类型的字段进行赋值时，需要手动加单引号；但是#{}使用占位符赋值的方式拼接sql，此时为字符串类型或日期类型的字段进行赋值时，可以自动添加单引号
 ## 1、单个字面量类型的参数
-- 若mapper接口中的方法参数为单个的字面量类型，此时可以使用\${}和#{}以任意的名称（最好见名识意）获取参数的值，注意${}需要手动加单引号
+- 若mapper接口中的方法参数为单个的字面量类型，
+- 此时可以使用\${}和#{}以任意的名称（最好见名识意）获取参数的值，注意${}需要手动加单引号
 ```xml
 <!--User getUserByUsername(String username);-->
 <select id="getUserByUsername" resultType="User">
@@ -543,7 +544,7 @@ public void insertUser() {
 	2. 以param1,param2...为键，以参数为值；
 - 只需要通过\${}和#{}访问map集合的键就可以获取相对应的值，注意${}需要手动加单引号
 ```xml
-<!--User CheckLoginByParam(@Param("username") String username, @Param("password") String password);-->
+<!--User CheckLoginByParam(@Param(value = "username") String username, @Param("password") String password);-->
     <select id="CheckLoginByParam" resultType="User">
         select * from t_user where username = #{username} and password = #{password}
     </select>
