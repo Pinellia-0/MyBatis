@@ -416,9 +416,7 @@ properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapp
 
 详细请看**笔记修改日志/2025_02_17.md**
 
-# 默认的类型别名
-![](Resources/默认的类型别名1.png)
-![](Resources/默认的类型别名2.png)
+
 
 # 四、MyBatis的增删改查
 1. 添加
@@ -680,7 +678,42 @@ Map<String, Object> getAllUserToMap();
 	}
 -->
 ```
+## 补充：默认的类型别名
+
+| 别名       | 映射的类型 |
+| :--------- | :--------- |
+| _byte      | byte       |
+| _long      | long       |
+| _short     | short      |
+| _int       | int        |
+| _integer   | int        |
+| _double    | double     |
+| _float     | float      |
+| _boolean   | boolean    |
+| string     | String     |
+| byte       | Byte       |
+| long       | Long       |
+| short      | Short      |
+| int        | Integer    |
+| integer    | Integer    |
+| double     | Double     |
+| float      | Float      |
+| boolean    | Boolean    |
+| date       | Date       |
+| decimal    | BigDecimal |
+| bigdecimal | BigDecimal |
+| object     | Object     |
+| map        | Map        |
+| hashmap    | HashMap    |
+| list       | List       |
+| arraylist  | ArrayList  |
+| collection | Collection |
+| iterator   | Iterator   |
+
+
+
 # 七、特殊SQL的执行
+
 ## 1、模糊查询
 ```java
 /**
