@@ -6,7 +6,7 @@
 
     <!--List<User> getUserByLike(@Param("username") String username);-->
     <select id="getUserByLike" resultType="User">
-        select * from t_user where username like '%#{username}%'
+        select * from t_user where username like '%${username}%'
     </select>
 
 
