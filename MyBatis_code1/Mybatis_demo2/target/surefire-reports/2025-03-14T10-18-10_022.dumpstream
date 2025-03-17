@@ -1,0 +1,5 @@
+# Created at 2025-03-14T10:18:11.195
+Boot Manifest-JAR contains absolute paths in classpath 'E:\Project\MyBatis_code1\Mybatis_demo2\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

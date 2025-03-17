@@ -9,5 +9,14 @@
         select * from t_user where username like '%${username}%'
     </select>
 
+    <!--int deleteMore(@Param("ids") String ids);-->
+    <delete id="deleteMore">
+        delete from t_user where id in (${ids})
+    </delete>
+
+    <!--List<User> getAllUser(@Param("tableName") String tableName);-->
+    <select id="getUserByTable" resultType="User">
+        select * from ${tableName}
+    </select>
 
 </mapper>

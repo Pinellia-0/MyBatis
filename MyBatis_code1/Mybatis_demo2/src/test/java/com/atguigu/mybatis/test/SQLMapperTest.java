@@ -18,4 +18,20 @@ public class SQLMapperTest {
         System.out.println(list);
     }
 
+    @Test
+    public void deleteMore() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SQLMapper mapper = sqlSession.getMapper(SQLMapper.class);
+        int result = mapper.deleteMore("1,2,3,8");
+        System.out.println(result);
+    }
+
+    @Test
+    public void testGetUserByTableName() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SQLMapper mapper = sqlSession.getMapper(SQLMapper.class);
+        List<User> List = mapper.getUserByTable("t_user");
+        System.out.println(List);
+
+    }
 }
